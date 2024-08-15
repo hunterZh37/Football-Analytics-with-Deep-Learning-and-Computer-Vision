@@ -210,6 +210,11 @@ def detect(cap, stframe, output_file_name, save_output, model_players, model_key
                     pred_dst_pts.append(list(np.transpose(dest_point)[:2]))                 # Update players tactical map coordiantes list
                 pred_dst_pts = np.array(pred_dst_pts)
 
+                 # Print tracking data for each player
+                for idx, pos in enumerate(pred_dst_pts):
+                    # team_name = list(colors_dic.keys())[players_teams_list[idx]]  # Get detected player team prediction
+                    print(f"Frame {frame_nbr}: Player {idx + 1}, Position: {pos}")
+
                 # Transform ball coordinates from frame plane to tactical map plance using the calculated Homography matrix
                 if detected_ball_src_pos is not None:
                     pt = np.append(np.array(detected_ball_src_pos), np.array([1]), axis=0)
